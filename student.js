@@ -7,6 +7,8 @@ class Student {
     }
 
 }
+//loo uus muutuja ja anna talle nimi, väärtuse saamiseks kasutame new operator
 const student = new Student("John")
 console.log(student.name) //john
 console.log(student.finished) //false
+
