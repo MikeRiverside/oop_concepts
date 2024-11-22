@@ -72,7 +72,11 @@ const square = new Square("green", 10)
 console.log("Square color is", square.getColor())
 console.log("Square area is ", square.getArea())
 
-const rect = new Rect("Purple", 5, 8)
+const circle2 = new Circle("blue", 10)
+console.log("Circle color is", circle2.getColor())
+console.log("Circle area is ", circle2.getArea())
+
+const rect = new Rect("purple", 5, 8)
 console.log("Rectangle color is", rect.getColor())
 console.log("Rectangle area is ", rect.getArea())
 
@@ -84,12 +88,44 @@ class Paint {
     addShape(shape){
         this.shapes.push(shape)
     }
+
+    getShapes() {
+        return this.shapes
+    }
+    calculateTotalArea(){
+        this.totalArea = 0
+        this.shapes.forEach(shape => {
+            this.totalArea += shape.getArea()
+        })
+        return this.totalArea
+    }
+    getCircles(){
+        this.circles = []
+        this.circles = this.shapes.filter(shape => shape.constructor.name == "Circle")
+        return this.circles
+    }
+    getSquares(){
+        this.squares = []
+        this.squares = this.shapes.filter(shape => shape instanceof Square)
+        return this.squares
+    }
+    getRects(){
+        this.rects = []
+        this.rects = this.shapes.filter(shape => shape instanceof Rect)
+        return this.rects
+    }
 }
+
 
 const paint = new Paint ()
 
 paint.addShape(circle)
 paint.addShape(square)
 paint.addShape(rect)
+paint.addShape(circle2)
 
-console.log(paint)
+console.log(paint.getShapes())
+console.log(paint.calculateTotalArea())
+paint.getCircles().forEach(shape => console.log(shape.print()))
+paint.getSquares().forEach(shape => console.log(shape.print()))
+paint.getRects().forEach(shape => console.log(shape.print()))
